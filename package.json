@@ -1,0 +1,24 @@
+{
+  "name": "yop-http-stub-or-proxy",
+  "version": "1.0.0",
+  "description": "stub or proxy",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha spec/*.spec.js --exit",
+    "start": "node lib/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericminio/yop-http-stub-or-proxy.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericminio/yop-http-stub-or-proxy/issues"
+  },
+  "homepage": "https://github.com/ericminio/yop-http-stub-or-proxy#readme",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  }
+}
