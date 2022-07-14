@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const request = require('./support/request');
 const { Server } = require('./support/server');
 
-describe('proxy exploration', () => {
+describe('exploration', () => {
 
     let proxy;
     let service;
