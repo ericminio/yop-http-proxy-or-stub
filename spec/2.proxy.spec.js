@@ -20,20 +20,14 @@ describe('proxy', () => {
 
     it('propagates request', (done) => {
         service.use((incoming, response) => {
-            response.writeHead(200, { 'content-Type': 'application/json' });
-            response.end(JSON.stringify({
-                method: incoming.method,
-                url: incoming.url,
-            }));
+            response.writeHead(200, { 'content-Type': 'text/plain' });
+            response.end('pong');
         });
-        request({ port: proxy.port, path: '/this/url' })
+        request({ port: proxy.port })
             .then(answer => {
                 expect(answer.statusCode).to.equal(200);
-                expect(answer.headers['content-type']).to.equal('application/json');
-                expect(answer.payload).to.deep.equal({
-                    method: 'GET',
-                    url: '/this/url'
-                });
+                expect(answer.headers['content-type']).to.equal('text/plain');
+                expect(answer.payload).to.equal('pong');
                 done();
             })
             .catch(done);
