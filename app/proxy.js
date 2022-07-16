@@ -15,7 +15,8 @@ proxy.start(() => {
 proxy.use((icoming, response) => {
     request({ port: proxy.service.port })
         .then(answer => {
-            response.writeHead(200, { 'content-Type': answer.headers['content-type'] });
+            response.statusCode = answer.statusCode;
+            response.setHeader('content-type', answer.headers['content-type']);
             response.end(answer.payload);        
         });
 });
