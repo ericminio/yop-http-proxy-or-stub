@@ -2,6 +2,7 @@
     "port": 5005,
 
     "service": {
+        "host": "localhost",
         "port": 5015
     }
 }

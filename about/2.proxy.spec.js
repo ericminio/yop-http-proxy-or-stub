@@ -21,13 +21,17 @@ describe('proxy', () => {
     it('propagates request', (done) => {
         service.use((incoming, response) => {
             response.writeHead(200, { 'content-Type': 'text/plain' });
-            response.end('pong');
+            response.end(`${incoming.method} ${incoming.url}`);
         });
-        request({ port: proxy.port })
+        request({ 
+            port: proxy.port, 
+            method: 'POST',
+            path:'/this/url' 
+        })
             .then(answer => {
                 expect(answer.statusCode).to.equal(200);
                 expect(answer.headers['content-type']).to.equal('text/plain');
-                expect(answer.payload).to.equal('pong');
+                expect(answer.payload).to.equal('POST /this/url');
                 done();
             })
             .catch(done);
