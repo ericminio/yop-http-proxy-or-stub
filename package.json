@@ -2,10 +2,10 @@
   "name": "yop-http-stub-or-proxy",
   "version": "1.0.0",
   "description": "stub or proxy",
-  "main": "lib/index.js",
+  "main": "app/proxy.js",
   "scripts": {
-    "test": "mocha spec/**/*.spec.js ./spec/*.spec.js --exit",
-    "start": "node lib/index.js"
+    "test": "mocha about/**/*.spec.js ./about/*.spec.js --exit",
+    "start": "node app/proxy.js"
   },
   "repository": {
     "type": "git",

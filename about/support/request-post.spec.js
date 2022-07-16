@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const { Server } = require('../../lib/server');
-const request = require('../../lib/request');
-const extractPayload = require('../../lib/extract-payload');
+const { Server } = require('../../app/server');
+const request = require('../../app/request');
+const extractPayload = require('../../app/extract-payload');
 
 describe('POST', () => {
 
