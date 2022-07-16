@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const request = require('./support/request');
+const request = require('../lib/request');
 const { proxy } = require('../lib/proxy');
-const { Server } = require('./support/server');
+const { Server } = require('../lib/server');
 
 describe('proxy', () => {
 

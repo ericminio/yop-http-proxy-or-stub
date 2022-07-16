@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const { Server } = require('./server');
-const request = require('./request');
+const { Server } = require('../../lib/server');
+const request = require('../../lib/request');
 
 describe('GET', () => {
 
