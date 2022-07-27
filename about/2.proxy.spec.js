@@ -15,9 +15,6 @@ describe('proxy', () => {
     afterEach((done) => {
         service.stop(done);
     });
-    after((done) =>{
-        proxy.stop(done);
-    });
 
     it('propagates request', (done) => {
         service.use((incoming, response) => {

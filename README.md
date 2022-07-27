@@ -9,6 +9,6 @@ Lines        : 100% ( 52/52 )
 
 # What you get
 
+- wip: always spies
 - wip: defaults to proxy
 - todo: stubs if matching route found
-- todo: always spies
