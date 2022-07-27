@@ -81,4 +81,46 @@ describe('proxy', () => {
             })
             .catch(done);
     });
+
+    it('answers with headers from service', (done) => {
+        service.use((incoming, response) => {
+            response.statusCode = 200;
+            response.setHeader('x-answer', '42');
+            response.end('pong');
+        });
+        request({ port: proxy.port })
+            .then(answer => {
+                expect(answer.statusCode).to.equal(200);
+                expect(answer.headers['x-answer']).to.equal('42');
+                done();
+            })
+            .catch(done);
+    });
+
+    it('answers with statusCode from service', (done) => {
+        service.use((incoming, response) => {
+            response.statusCode = 404;
+            response.end();
+        });
+        request({ port: proxy.port })
+            .then(answer => {
+                expect(answer.statusCode).to.equal(404);
+                done();
+            })
+            .catch(done);
+    });
+
+    it('answers with payload from service', (done) => {
+        service.use((incoming, response) => {
+            response.statusCode = 200;
+            response.end('hello');
+        });
+        request({ port: proxy.port })
+            .then(answer => {
+                expect(answer.statusCode).to.equal(200);
+                expect(answer.payload).to.equal('hello');
+                done();
+            })
+            .catch(done);
+    });
 });

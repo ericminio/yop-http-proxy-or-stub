@@ -32,7 +32,9 @@ proxy.use((incoming, response) => {
         })
             .then(answer => {
                 response.statusCode = answer.statusCode;
-                response.setHeader('content-type', answer.headers['content-type']);
+                Object.keys(answer.headers).forEach(key => {
+                    response.setHeader(key, answer.headers[key]);
+                });
                 response.end(answer.payload);        
             });    
     });
