@@ -1,9 +1,14 @@
 [![tests](https://github.com/ericminio/yop-http-stub-or-proxy/actions/workflows/tests.yml/badge.svg)](https://github.com/ericminio/yop-http-stub-or-proxy/actions/workflows/tests.yml)
 
-[Stats](https://ericminio.github.io/tdd/app/index.html?test=2502&code=608&refactor=2801)
+```
+Statements   : 100% ( 53/53 )
+Branches     : 100% ( 4/4 )
+Functions    : 100% ( 17/17 )
+Lines        : 100% ( 52/52 )                 
+```
 
-# yop-http-stub-or-proxy
+# What you get
 
-- defaults to proxy
-- stubs if matching route found
-- always spies
+- wip: defaults to proxy
+- todo: stubs if matching route found
+- todo: always spies

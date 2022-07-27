@@ -5,7 +5,7 @@
   "main": "app/proxy.js",
   "scripts": {
     "test": "mocha 'about/**/*.spec.js' --exit",
-    "coverage": "nyc npm run test",
+    "coverage": "nyc --reporter=text-summary npm run test",
     "start": "node app/proxy.js"
   },
   "repository": {
