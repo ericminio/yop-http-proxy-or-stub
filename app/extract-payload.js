@@ -1,4 +1,4 @@
-const extractBody = (incoming) => {
+const extractPayload = (incoming) => {
     return new Promise((resolve, reject) => {
         let payload = '';
         incoming.on('data', chunk => {
@@ -7,10 +7,8 @@ const extractBody = (incoming) => {
         incoming.on('end', () => {
             resolve(payload);
         });
-        incoming.on('error', error => {
-            reject(error);
-        })
+        incoming.on('error', reject)
     });
 }
 
-module.exports = extractBody;
+module.exports = { extractPayload };

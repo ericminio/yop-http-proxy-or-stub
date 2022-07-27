@@ -1,5 +1,5 @@
 const http = require('http');
-const extractPayload = require('./extract-payload');
+const { extractPayload } = require('./extract-payload');
 
 const request = (options) => {
     return new Promise((resolve, reject) => {

@@ -1,5 +1,6 @@
 const { Server } = require('./server');
 const configuration = require('./configuration');
+const { extractPayload } = require('./extract-payload');
 const proxy = new Server(configuration.port);
 proxy.service = configuration.service;
 
@@ -12,15 +13,18 @@ proxy.start(() => {
 });
 
 proxy.use((incoming, response) => {
-    require('./request')({ 
-        host: proxy.service.host,
-        port: proxy.service.port,
-        method: incoming.method,
-        path: incoming.url
-    })
-        .then(answer => {
-            response.statusCode = answer.statusCode;
-            response.setHeader('content-type', answer.headers['content-type']);
-            response.end(answer.payload);        
-        });
+    extractPayload(incoming).then(payload => {
+        require('./request')({ 
+            host: proxy.service.host,
+            port: proxy.service.port,
+            method: incoming.method,
+            path: incoming.url,
+            payload,
+        })
+            .then(answer => {
+                response.statusCode = answer.statusCode;
+                response.setHeader('content-type', answer.headers['content-type']);
+                response.end(answer.payload);        
+            });    
+    });
 });
