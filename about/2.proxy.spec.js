@@ -42,7 +42,7 @@ describe('proxy', () => {
         service.use((incoming, response) => {
             extractPayload(incoming).then(payload => {          
                 response.writeHead(200, { 'content-Type': 'text/plain' });
-                response.end(payload);
+                response.end(`received: ${payload}`);
             });
         });
         request({ 
@@ -53,7 +53,33 @@ describe('proxy', () => {
             .then(answer => {
                 expect(answer.statusCode).to.equal(200);
                 expect(answer.headers['content-type']).to.equal('text/plain');
-                expect(answer.payload).to.equal('this payload');
+                expect(answer.payload).to.equal('received: this payload');
+                done();
+            })
+            .catch(done);
+    });
+
+    it('propagates headers', (done) => {
+        service.use((incoming, response) => {
+            let payload = JSON.stringify(incoming.headers);
+            response.writeHead(200, { 'content-Type': 'text/plain' });
+            response.end(payload);
+        });
+        request({ 
+            port: proxy.port, 
+            headers: {
+                'x-1': '4',
+                'x-2': '2'
+            }
+        })
+            .then(answer => {
+                expect(answer.statusCode).to.equal(200);
+                expect(answer.headers['content-type']).to.equal('text/plain');
+                expect(JSON.parse(answer.payload)).to.include({
+                    host: `localhost:${proxy.port}`,
+                    'x-1': '4',
+                    'x-2': '2'
+                });
                 done();
             })
             .catch(done);

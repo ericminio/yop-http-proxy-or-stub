@@ -19,6 +19,7 @@ proxy.use((incoming, response) => {
             port: proxy.service.port,
             method: incoming.method,
             path: incoming.url,
+            headers: incoming.headers,
             payload,
         })
             .then(answer => {

@@ -51,8 +51,9 @@ describe('POST', () => {
         request({
             port: 5001,
             method: 'post',
-            contentType: 'application/json',
-            payload: JSON.stringify({ answer: 42 })
+            headers: { 
+                'content-type': 'application/json' 
+            }            
         })
             .then((answer) => {
                 expect(answer.payload).to.equal('application/json');
